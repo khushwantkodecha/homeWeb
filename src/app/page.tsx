@@ -25,28 +25,28 @@ const SectionHeading = ({ title }: { title: string }) => (
     className="flex items-center justify-center gap-4 mb-10"
   >
     <Flourish className="text-earth-900" />
-    <h2 className="font-cursive text-5xl md:text-6xl text-earth-900 font-medium tracking-wide">{title}</h2>
+    <h2 className="text-4xl md:text-5xl text-earth-900 font-semibold tracking-wide">{title}</h2>
     <Flourish className="text-earth-900" flipped />
   </motion.div>
 );
 
 const TopDunes = () => (
   <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 translate-y-px pointer-events-none">
-    <svg viewBox="0 0 1440 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-[60px] sm:h-[100px] md:h-[160px]" preserveAspectRatio="none">
-      <path d="M0 160V100C120 100 240 110 360 120C480 130 600 140 720 120C840 100 960 50 1080 40C1200 30 1320 60 1440 80V160H0Z" fill="#e6dcc5" fillOpacity="0.8" />
-      <path d="M0 160V120C120 120 240 100 360 85C480 70 600 60 720 70C840 80 960 110 1080 125C1200 140 1320 140 1440 130V160H0Z" fill="#efe7d6" fillOpacity="0.9" />
-      <path d="M0 160V140C120 140 240 130 360 130C480 130 600 140 720 135C840 130 960 110 1080 95C1200 80 1320 70 1440 75V160H0Z" fill="#fbf9f6" />
+    <svg viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-[80px] sm:h-[120px] md:h-[200px]" preserveAspectRatio="none">
+      <path d="M0 200 V 100 C 200 160 350 20 550 60 C 750 100 900 140 1150 80 C 1300 40 1400 90 1440 70 V 200 Z" fill="#e6dcc5" opacity="0.8" />
+      <path d="M0 200 V 130 C 150 110 300 150 500 120 C 700 90 850 70 1050 130 C 1250 190 1350 120 1440 110 V 200 Z" fill="#efe7d6" opacity="0.9" />
+      <path d="M0 200 V 160 C 250 180 450 110 750 140 C 1050 170 1250 110 1440 140 V 200 Z" fill="#fbf9f6" />
     </svg>
   </div>
 );
 
 const BottomDunes = () => (
-  <div className="w-full overflow-hidden leading-none z-10 -translate-y-[1px] pointer-events-none mt-16 md:mt-32 block">
-    <svg viewBox="0 0 1440 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-[80px] sm:h-[140px] md:h-[220px]" preserveAspectRatio="none">
-      <path d="M0 10C120 25 240 40 360 45C480 50 600 45 720 30C840 15 960 -10 1080 5C1200 20 1320 80 1440 110V220H0V10Z" fill="#d0924e" />
-      <path d="M0 40C120 45 240 50 360 40C480 30 600 5 720 10C840 15 960 50 1080 80C1200 110 1320 135 1440 140V220H0V40Z" fill="#b06132" />
-      <path d="M0 70C120 70 240 70 360 85C480 100 600 130 720 140C840 150 960 140 1080 125C1200 110 1320 90 1440 85V220H0V70Z" fill="#904222" />
-      <path d="M0 120C120 110 240 100 360 115C480 130 600 170 720 185C840 200 960 190 1080 170C1200 150 1320 120 1440 105V220H0V120Z" fill="#693018" />
+  <div className="w-full overflow-hidden leading-none z-10 -translate-y-[1px] pointer-events-none mt-12 md:mt-20 block">
+    <svg viewBox="0 0 1440 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-[100px] sm:h-[160px] md:h-[260px]" preserveAspectRatio="none">
+      <path d="M0 260 V 50 C 250 110 400 -10 700 30 C 1000 70 1200 140 1440 80 V 260 Z" fill="#d0924e" />
+      <path d="M0 260 V 100 C 150 80 350 130 600 90 C 850 50 1050 30 1300 100 C 1380 120 1420 80 1440 90 V 260 Z" fill="#b06132" />
+      <path d="M0 260 V 160 C 300 200 500 110 800 140 C 1100 170 1300 230 1440 170 V 260 Z" fill="#904222" />
+      <path d="M0 260 V 210 C 200 180 400 240 750 210 C 1100 180 1250 250 1440 220 V 260 Z" fill="#693018" />
     </svg>
   </div>
 );
@@ -120,7 +120,7 @@ export default function Home() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -131,8 +131,10 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-[100svh] min-h-[600px] w-full flex flex-col items-center justify-center pt-10 overflow-hidden bg-earth-900">
+
+        {/* Animated Background for Desktop */}
         <motion.div
-          className="absolute inset-0 z-0 will-change-transform"
+          className="absolute inset-0 z-0 transform-gpu will-change-[transform,opacity] hidden md:block"
           style={{ y: heroY, opacity: heroOpacity }}
         >
           <Image
@@ -142,9 +144,21 @@ export default function Home() {
             className="object-cover object-center"
             priority
           />
-          {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
         </motion.div>
+
+        {/* Static Background for Mobile (Performance Fix) */}
+        <div className="absolute inset-0 z-0 md:hidden">
+          <Image
+            src="/hero-img.png"
+            alt="Rajasthan village landscape"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+        </div>
+
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto -mt-16 sm:-mt-20">
           <motion.div
@@ -152,7 +166,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="font-cursive text-6xl sm:text-7xl md:text-8xl lg:text-[100px] text-white drop-shadow-2xl leading-[1.1] mb-6 tracking-wide font-medium">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[84px] text-white drop-shadow-2xl leading-[1.1] mb-6 tracking-wide font-bold">
               Saruparam &<br className="sm:hidden" /> Saraswati Kodecha
             </h1>
           </motion.div>
@@ -205,7 +219,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 className="w-full md:w-2/3 flex flex-col justify-center"
               >
-                <p className="text-earth-800 text-lg md:text-xl font-light leading-relaxed md:leading-[1.8]">
+                <p className="text-earth-800 text-xl md:text-2xl font-light leading-relaxed md:leading-[1.8]">
                   This home is owned by Saruparam and Saraswati Kodecha.
                   Saruparam serves as a PTI (Physical Training Instructor) teacher at Baytu Bhimji School, where he is actively involved in sports training and physical education for students.
                 </p>
@@ -236,17 +250,6 @@ export default function Home() {
                 className="w-full h-full"
               ></iframe>
             </motion.div>
-            <a
-              href="https://www.google.com/maps/place/Saruparam+%26+Saraswati+Kodecha/@25.8994078,71.7426822,48m/data=!3m1!1e3!4m6!3m5!1s0x39441d002ffdea31:0x13818f8189a79d42!8m2!3d25.899455!4d71.7425821!16s%2Fg%2F11z0wvjbzk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-6 px-8 py-3 bg-terracotta-600 hover:bg-terracotta-500 text-white text-sm font-medium rounded-full transition-all shadow-md hover:shadow-lg"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 0C5.372 0 0 5.373 0 12C0 21 12 32 12 32C12 32 24 21 24 12C24 5.373 18.628 0 12 0ZM12 16.5C9.515 16.5 7.5 14.485 7.5 12C7.5 9.515 9.515 7.5 12 7.5C14.485 7.5 16.5 9.515 16.5 12C16.5 14.485 14.485 16.5 12 16.5Z" fill="currentColor" />
-              </svg>
-              Open in Google Maps
-            </a>
           </section>
 
         </div>
@@ -254,7 +257,7 @@ export default function Home() {
         {/* Footer Area with Transition Dunes */}
         <div className="w-full relative flex flex-col mt-0">
           <BottomDunes />
-          <footer className="w-full bg-[#693018] text-white text-center pb-16 pt-10 md:pt-16 z-20">
+          <footer className="w-full bg-[#693018] text-white text-center pb-16 pt-10 md:pt-20 px-6 md:px-12 z-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -262,7 +265,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
 
-              <p className="text-lg md:text-xl font-light text-white/80 tracking-wide mb-8 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-xl md:text-2xl font-light text-white/80 tracking-wide mb-8 leading-relaxed max-w-2xl mx-auto">
                 Step away from the noise and embrace the serene rhythm of the desert.
                 We warmly invite you to share in the beauty and calm of our village home.
               </p>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Great_Vibes } from "next/font/google";
+import { Inter, Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,9 +12,9 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
 });
 
-const greatVibes = Great_Vibes({
-  weight: "400",
-  variable: "--font-cursive",
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
   subsets: ["latin"],
 });
 
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${playfairDisplay.variable} ${greatVibes.variable} antialiased bg-sand-50 text-stone-900 font-sans`}
+        className={`${inter.variable} ${playfairDisplay.variable} ${poppins.variable} antialiased bg-sand-50 text-stone-900 font-sans`}
       >
         {children}
       </body>

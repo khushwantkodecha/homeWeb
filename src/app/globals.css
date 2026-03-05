@@ -2,7 +2,7 @@
 
 @layer base {
   * {
-    font-family: "Apple Chancery", cursive !important;
+    font-family: var(--font-poppins), sans-serif !important;
   }
 }
 
