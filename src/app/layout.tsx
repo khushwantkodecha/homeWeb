@@ -19,7 +19,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Saruparam & Saraswati Kodecha — A peaceful home in Rajasthan",
+  title: "Saruparam & Saraswati Kodecha",
 };
 
 export default function RootLayout({
